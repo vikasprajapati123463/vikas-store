@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vikas product Store</title>
+    <link rel="stylesheet" href="style.css">
+</html>
+<body>
+
+    <h1> vikas product store</h1>
+<nav>
+    <h2>Vikas Store</h2>
+    <button onclick="toggleDarkMode()">Dark Mode</button>
+    <input type="text" id="search" placeholder="Search Product" onkeyup="searchProduct()">
+    <p>Cart: <span id="cart-count"></span></p>
+    <p>Total: $<span id="total-price">0>/span></p>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Login.html">Login</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cart.html">cart</a></li>
+        <li><a href="#product">Product</a></li>
+    </ul>
+</nav>
+<section class="hero">
+    <h1>Welcome to Vikas Store</h1>
+    <p><Big>Sale - Up to  70% off</p>
+    <button>Shop Now</button>
+</section>
+
+<h2>Categories</h2>
+
+<div> class="categories">
+    <div>Mobiles</div>
+    <div>Laptop</div>
+    <div>Watches</div>
+    <div>Headphones</div>
+</div>
+
+<div class="products" id="products">
+
+    <div class="product">
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400" alt="Headphones">
+        <h2>Wireless Headphones</h2>
+        <p>$99.99</p>
+         <button onclick="window.location.href='checkout.html'">
+            Buy Now
+        </button>
+
+        <!-- <button onclick="buyProduct('Wireless Headphones', 99.99)">Buy Now</button> -->
+    </div>
+
+    <div class="product">
+        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400" alt="Laptop">
+        <h2>Laptop</h2>
+        <p>$599.99</p>
+        <button onclick="window.location.href='checkout.html'">
+            Buy Now
+        </button>
+    </div>
+
+    <div class="product">
+        <img src="watch.jpg" alt="Smart Watch">
+        <h2>Smart Watch</h2>
+        <p>$79.99</p>
+         <button onclick="window.location.href='checkout.html'">
+            Buy Now
+        </button>
+
+        <!-- <button onclick="buyProduct('Smart Watch', 79.99)">Buy Now</button> -->
+    </div>
+
+
+<footer>
+    <p> 2026 Vikas Store. All Right Reserved.</p>
+</footer>
+
+<script>
+let isLogIn = false;
+let cartCount = 0;
+let totalPrice = 0;
+
+function searchProduct(){
+    let input = document.getElementById("search").value.toLowercase();
+    let products = document.getElementsByClassName("products");
+
+    for(let i=0; i < products.length; i++) {
+        let name = products[i].getElementsByTagName("h2")[0].innerText.toLowerCase();
+
+        if(name.includes(input)){
+            products[i].style.display = "block";
+        }else{
+            products[i].style.display = "none";
+        }
+    }
+}
+
+
+function loginSuccess(){
+    isLogIn = true;
+}
+
+function buyProduct(name, price){
+    cartCount++;
+    totalPrice += price;
+
+    document.getElementById("cart-count").innerText = cartCount;
+    document.getElementById("total-price").innerText = totalPrice;
+
+    alert(name + " Added to cart!");
+}
+function toggleDarkMode(){
+    document.body.classList.toggle("dark-mode");
+}
+</script>
+</body>
+
+<html>
+    
